@@ -2,12 +2,12 @@
 #Remember to still create necessary IAM roles with needed policies for eks cluster creation
 
 ---
-- hosts: terraform
+- hosts: terra
   become: true
   tasks:
   - name: Create Devops Terraform User
     user:
-      name: terraform
+      name: terra
       create_home: true
       shell: /bin/bash
       comment: "Terraform Management Account"
@@ -15,14 +15,14 @@
       password: "{{ 'Gunners23' | password_hash('sha512','A512') }}"
   - name: Deploy Local User SSH Key
     authorized_key:
-      user: terraform
+      user: terra
       state: present
       manage_dir: true
       key: "{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
   - name: Setup Sudo Access for Devops User
     copy:
       dest: /etc/sudoers.d/terraform
-      content: 'terraform ALL=(ALL) NOPASSWD: ALL'
+      content: 'terra ALL=(ALL) NOPASSWD: ALL'
       validate: /usr/sbin/visudo -cf %s
   -  name: Disable Password Authentication
      lineinfile:
@@ -41,7 +41,7 @@
 #Installation
 
 ---
-- hosts: terraform
+- hosts: terra
   become: true
   tasks: 
   - name: Install list of packages
@@ -59,9 +59,9 @@
   
   - name: Change ownership for opt directory in Terraform User.
     file:
-      path: /home/terraform/./aws/install/
-      owner: terraform
-      group: terraform
+      path: /home/terra/./aws/install/
+      owner: terra
+      group: terra
       mode: "u+rwx,g+rx,o=rx"
       recurse: yes
 
@@ -74,15 +74,15 @@
 
   - name: Install Terraform
     unarchive:
-      src: https://releases.hashicorp.com/terraform/1.4.5/terraform_1.4.5_linux_amd64.zip #ref: https://developer.hashicorp.com/terraform/downloads & https://releases.hashicorp.com/terraform/
+      src: https://releases.hashicorp.com/terraform/1.4.5/terraform_1.7.5_linux_amd64.zip #ref: https://developer.hashicorp.com/terraform/downloads & https://releases.hashicorp.com/terraform/
       dest: /usr/local/bin
       remote_src: yes
 
   - name: Change ownership to Terraform User.
     file:
       path: /usr/local/bin/terraform_1.4.5/
-      owner: terraform
-      group: terraform
+      owner: terra
+      group: terra
       mode: "u+rwx,g+rx,o=rx"
       recurse: yes
 
