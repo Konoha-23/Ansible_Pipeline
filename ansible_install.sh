@@ -7,6 +7,8 @@ sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication
 sudo service sshd restart
 sudo su - ansible
 sudo apt update -y
+sudo apt install openjdk-17-jdk -y
+sudo apt update -y
 sudo apt-add-repository ppa:ansible/ansible
 sudo apt install ansible -y
 sudo chown ansible:ansible -R /etc/ansible/
