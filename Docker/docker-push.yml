@@ -1,0 +1,15 @@
+---
+- hosts: docker
+  become: true
+
+  tasks:
+  - name: create docker image using war file
+    command: docker build -t princebabs/konoha .
+    args:
+      chdir: /opt/k8s-lab
+
+  #- name: create tag to image
+   # command: docker tag simple-devops-image yankils/simple-devops-image
+
+  - name: push image on to dockerhub
+    command: docker push princebabs/konohae
