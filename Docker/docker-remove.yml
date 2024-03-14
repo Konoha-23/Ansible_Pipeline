@@ -1,0 +1,7 @@
+---
+- hosts: docker
+  become: true
+  tasks:
+  - name: remove docker images form docker server
+    command: docker rmi princebabs/konoha:latest 
+    ignore_errors: yes
