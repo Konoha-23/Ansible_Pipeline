@@ -12,4 +12,4 @@
    # command: docker tag simple-devops-image yankils/simple-devops-image
 
   - name: push image on to dockerhub
-    command: docker push princebabs/konohae
+    command: docker push princebabs/konoha
