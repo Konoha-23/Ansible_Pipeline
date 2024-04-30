@@ -38,7 +38,7 @@
       
   - name: install JDK 11 in opt directory of Sonar User
     apt:
-      name: openjdk-11-jdk
+      name: openjdk-17-jdk
       state: present
 
   - name: Download and Unzip Sonarqube into the opt directory of Ansible User
@@ -93,7 +93,7 @@
       
   - name: install JDK 11 in opt directory of Sonar User
     apt:
-      name: openjdk-11-jdk
+      name: openjdk-17-jdk
       state: present
 
   - name: Download and Unzip Sonarqube into the opt directory of Sonar User
