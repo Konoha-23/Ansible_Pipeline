@@ -36,7 +36,7 @@
     apt:
       update_cache: true
       
-  - name: install JDK 11 in opt directory of Sonar User
+  - name: install JDK 17 in opt directory of Sonar User
     apt:
       name: openjdk-17-jdk
       state: present
@@ -91,7 +91,7 @@
       mode: "u+rwx,g+rx,o=rx"
       recurse: yes
       
-  - name: install JDK 11 in opt directory of Sonar User
+  - name: install JDK 17 in opt directory of Sonar User
     apt:
       name: openjdk-17-jdk
       state: present
